@@ -11,7 +11,7 @@ export default function BuyNow() {
     // console.log(cardData.carts)
 
     const getData = async () => {
-        const resposne = await fetch('/cartdetails', {
+        const resposne = await fetch('https://amazonclone-f2wf.onrender.com/cartdetails', {
             method: "GET",
             headers: {
                 Accept: "application/json",

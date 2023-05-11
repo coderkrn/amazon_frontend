@@ -10,7 +10,7 @@ export default function ({ deleteItem, get }) {
 
     const removeData = async () => {
         try {
-            const res = await fetch(`/remove/${deleteItem}`, {
+            const res = await fetch(`https://amazonclone-f2wf.onrender.com/remove/${deleteItem}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",

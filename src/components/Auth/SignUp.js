@@ -35,7 +35,7 @@ export default function SignUp() {
         //     })
         // }
 
-        const response = await fetch('/register', {
+        const response = await fetch('https://amazonclone-f2wf.onrender.com/register', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

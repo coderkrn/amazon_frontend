@@ -20,7 +20,7 @@ export default function Cart() {
     // console.log(indData)
 
     const getIndData = async () => {
-        const res = await fetch(`/getproductsone/${id}`, {
+        const res = await fetch(`https://amazonclone-f2wf.onrender.com/getproductsone/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

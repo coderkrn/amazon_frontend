@@ -33,7 +33,7 @@ export default function SignIn() {
     const sendData = async (e) => {
         e.preventDefault();
         const {email, password} = logdata;
-        const response = await fetch('/login', {
+        const response = await fetch('https://amazonclone-f2wf.onrender.com/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
