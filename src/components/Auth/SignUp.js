@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BackendServer } from '../server';
 
 export default function SignUp() {
 
@@ -34,8 +35,12 @@ export default function SignUp() {
         //         autoClose: 3000
         //     })
         // }
+      
 
-        const response = await fetch('https://amazonclone-f2wf.onrender.com/register', {
+        const response = await fetch(`/register`, {
+        // const response = await fetch(`${BackendServer}/register`, {
+        // const response = await fetch('http://localhost:8005/register', {
+        // const response = await fetch('https://amazonclone-f2wf.onrender.com/register', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

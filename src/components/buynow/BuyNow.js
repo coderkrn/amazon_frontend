@@ -4,6 +4,8 @@ import { Divider } from '@mui/material'
 import Option from './Option'
 import SubTotle from './SubTotle'
 import Right from './Right'
+import { BackendServer } from '../server'
+
 
 export default function BuyNow() {
 
@@ -11,7 +13,10 @@ export default function BuyNow() {
     // console.log(cardData.carts)
 
     const getData = async () => {
-        const resposne = await fetch('https://amazonclone-f2wf.onrender.com/cartdetails', {
+        const resposne = await fetch(`/cartdetails`, {
+            // const resposne = await fetch(`${BackendServer}/cartdetails`, {
+            // const resposne = await fetch('http://localhost:8005/cartdetails', {
+            // const resposne = await fetch('https://amazonclone-f2wf.onrender.com/cartdetails', {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -56,7 +61,7 @@ export default function BuyNow() {
                                                     <p className="unusuall">Usually dispathed in 8 days.</p>
                                                     <p>Eligible for FREE Shpipping</p>
                                                     {/* <img src="" alt="" /> */}
-                                                    <Option  deleteItem={e.id} get={getData}/>
+                                                    <Option deleteItem={e.id} get={getData} />
                                                 </div>
                                                 <h3 className='item_price'>{e.price.cost}</h3>
                                             </div>
@@ -69,12 +74,19 @@ export default function BuyNow() {
 
                             <SubTotle item={cardData} get={getData} />
                         </div>
-                        <Right   item={cardData} />
+                        <Right item={cardData} />
                         <div className="right_buy">
 
                         </div>
                     </div>
-                </div> : " "
+                </div> :
+                    <>
+                        <div className='empty_cart'>
+                            <img src="https://learning.tcsionhub.in/iDH/dashboard/images/cart_empty_new.png" alt="" />
+                            <h1>Your cart is empty!</h1>
+                            <h4>It's a good day to buy the items!</h4>
+                        </div>
+                    </>
             }
 
         </>

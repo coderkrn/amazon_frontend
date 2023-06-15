@@ -222,6 +222,13 @@
 }
 
 
+.empty_cart{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 7rem;
+}
+
 
 
 /* media query */
@@ -337,5 +344,8 @@
         width: 50px;
         margin-left: -10px;
     }
+    .empty_cart img{
+       width: 250px;
+     }
     
 }

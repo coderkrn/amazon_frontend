@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './cart.css'
 import { Divider } from '@mui/material'
-import { useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { loginContext } from '../context/contextProvider'
 import CircularProgress from '@mui/material/CircularProgress';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import {BackendServer} from '../server'
+
 
 
 
@@ -20,10 +24,14 @@ export default function Cart() {
     // console.log(indData)
 
     const getIndData = async () => {
-        const res = await fetch(`https://amazonclone-f2wf.onrender.com/getproductsone/${id}`, {
+        const res = await fetch(`/getproductsone/${id}`, {
+        // const res = await fetch(`${BackendServer}/getproductsone/${id}`, {
+        // const res = await fetch(`http://localhost:8005/getproductsone/${id}`, {
+        // const res = await fetch(`https://amazonclone-f2wf.onrender.com/getproductsone/${id}`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+            
             }
         })
 
@@ -50,10 +58,15 @@ export default function Cart() {
 
     const addToCart = async (id) => {
         const checker = await fetch(`/addcart/${id}`, {
+        // const checker = await fetch(`${BackendServer}/addcart/${id}`, {
+        // const checker = await fetch(`http://localhost:8005/addcart/${id}`, {
+        // const checker = await fetch(`https://amazonclone-f2wf.onrender.com/addcart/${id}`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                // "Access-Control-Allow-Origin": "*",
+                // "Access-Control-Allow-Credentials": true
             },
             body: JSON.stringify({
                 indData
@@ -76,9 +89,15 @@ export default function Cart() {
 
     //Loading Effect
 
+    const proAlert = () => {
+        toast.warning('Project is under production 👀', {
+          position: "top-right",
+          autoClose: 5000
+        })
+        // console.log("Hello world")
+      }
 
-
-
+ 
     return (
         <>
             <div className="cart_section">
@@ -89,8 +108,12 @@ export default function Cart() {
                         <div className="left_cart">
                             <img src={indData.url} alt="cart image" />
                             <div className="cart_btn">
-                                <button className='cart_btn1' onClick={() => addToCart(indData.id)}>Add to Cart</button>
-                                <button className='cart_btn2'>Buy Now</button>
+                                {
+                                    account? <button className='cart_btn1' onClick={() => addToCart(indData.id)}>Add to Cart</button>:
+                                     <NavLink to='/login'><button className='cart_btn1'>Add to Cart</button></NavLink>
+
+                                }
+                                <button onClick={() => {proAlert()}} className='cart_btn2'>Buy Now</button>
                             </div>
                         </div>
                         <div className="right_cart">

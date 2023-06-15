@@ -22,6 +22,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
+import { BackendServer } from '../server'
+
+
+
 
 
 
@@ -54,11 +58,16 @@ export default function Navbar() {
 
   // console.log(account)
   const validuser = async () => {
-    const res = await fetch('https://amazonclone-f2wf.onrender.com/validuser', {
+    const res = await fetch(`/validuser`, {
+    // const res = await fetch(`${BackendServer}/validuser`, {
+      // const res = await fetch('http://localhost:8005/validuser', {
+      // const res = await fetch('https://amazonclone-f2wf.onrender.com/validuser', {
       method: "GET",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type":"application/json",
+        // ' Access-Control-Allow-Origin':'*',
+        // 'Access-Control-Allow-Credentials':true
       },
       credentials: "include"
     })
@@ -82,7 +91,10 @@ export default function Navbar() {
   }
 
   const logoutUser = async () => {
-    const res2 = await fetch('https://amazonclone-f2wf.onrender.com/logout', {
+    const res2 = await fetch(`/logout`, {
+    // const res2 = await fetch(`${BackendServer}/logout`, {
+      // const res2 = await fetch('http://localhost:8005/logout', {
+      // const res2 = await fetch('https://amazonclone-f2wf.onrender.com/logout', {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -129,7 +141,7 @@ export default function Navbar() {
               <MenuIcon style={{ color: "#fff" }} />
             </IconButton>
 
-            <Drawer open={dropen} onClose={handleDrClose} > <RightHeader close={handleDrClose} logoutUser={logoutUser}  />  </Drawer>
+            <Drawer open={dropen} onClose={handleDrClose} > <RightHeader close={handleDrClose} logoutUser={logoutUser} />  </Drawer>
             <div className="navlogo">
               <Link to='/'> <img src="https://raw.githubusercontent.com/harsh17112000/E-commerceapp/main/client/public/amazon_PNG25.png" alt="" /> </Link>
             </div>
@@ -142,13 +154,13 @@ export default function Navbar() {
                 text &&
                 <List className="extrasearch" hidden={liopen}>
                   {
-                     products.filter(product => product.title.shortTitle.toLowerCase().includes(text.toLowerCase())).map(product=>(
+                    products.filter(product => product.title.shortTitle.toLowerCase().includes(text.toLowerCase())).map(product => (
                       <ListItem>
-                        <NavLink to={`/getproductsone/${product.id}`} onClick={()=> setLiopen(true)}>
-                        {product.title.shortTitle}
+                        <NavLink to={`/getproductsone/${product.id}`} onClick={() => setLiopen(true)}>
+                          {product.title.shortTitle}
                         </NavLink>
                       </ListItem>
-                     ))
+                    ))
                   }
                 </List>
               }
@@ -157,7 +169,7 @@ export default function Navbar() {
           <div className="right">
             <div className="nav_btn">
               {
-                !account? <Link to="/login">Signin</Link> : " "
+                !account ? <Link to="/login">Signin</Link> : " "
               }
             </div>
             <div className="cart_btn">

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { loginContext } from '../context/contextProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BackendServer} from '../server'
 
 export default function ({ deleteItem, get }) {
 
@@ -10,7 +11,10 @@ export default function ({ deleteItem, get }) {
 
     const removeData = async () => {
         try {
-            const res = await fetch(`https://amazonclone-f2wf.onrender.com/remove/${deleteItem}`, {
+            const res = await fetch(`/remove/${deleteItem}`, {
+            // const res = await fetch(`${BackendServer}/remove/${deleteItem}`, {
+            // const res = await fetch(`http://localhost:8005/remove/${deleteItem}`, {
+            // const res = await fetch(`https://amazonclone-f2wf.onrender.com/remove/${deleteItem}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",

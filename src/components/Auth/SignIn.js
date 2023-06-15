@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginContext } from '../context/contextProvider';
+import { BackendServer } from '../server';
+
 
 export default function SignIn() {
 
@@ -33,7 +35,10 @@ export default function SignIn() {
     const sendData = async (e) => {
         e.preventDefault();
         const {email, password} = logdata;
-        const response = await fetch('https://amazonclone-f2wf.onrender.com/login', {
+        const response = await fetch(`/login`, {
+        // const response = await fetch(`${BackendServer}/login`, {
+        // const response = await fetch('http://localhost:8005/login', {
+        // const response = await fetch('https://amazonclone-f2wf.onrender.com/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
