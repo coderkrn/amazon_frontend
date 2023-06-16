@@ -11,7 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 // import { ToastContainer, toast } from 'react-toastify';
 
 export default function RightHeader({close, logoutUser}) {
-  const { account, setAccount } = useContext(loginContext)
+  const { account } = useContext(loginContext)
 
 
   return (

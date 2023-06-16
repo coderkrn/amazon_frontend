@@ -5,7 +5,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { loginContext } from '../context/contextProvider'
 import CircularProgress from '@mui/material/CircularProgress';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {BackendServer} from '../server'
 
 
